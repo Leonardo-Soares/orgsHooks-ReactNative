@@ -1,16 +1,39 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
+import { carregaTopo } from "../../../services/carregaDados";
 import logo from "../../../assets/logo.png";
 
-export default function Topo() {
-  return <>
-    <View style={styleTopo.topo}>
-      <Image style={styleTopo.imgLogo} source={logo} />
-      <Text style={styleTopo.titleTopo}>Olá Luisa</Text>
-      <Text style={styleTopo.legendas}>Econtre os melhores produtosres</Text>
-    </View>
-  </>
+class Topo extends React.Component {
+
+  state = {
+    topo: {
+      tituloBemVindo: '',
+      descricao: '',
+    }
+  }
+
+  atualizaTopo() {
+    const retorno = carregaTopo();
+    this.setState({ topo: retorno});
+    console.log(retorno);
+  }
+
+  // é executado quando o componente termina de renderizar;
+  componentDidMount() {
+    this.atualizaTopo();
+  }
+  
+  render() {
+    return <>
+      <View style={styleTopo.topo}>
+        <Image style={styleTopo.imgLogo} source={logo} />
+        <Text style={styleTopo.titleTopo}>{ this.state.topo.tituloBemVindo }</Text>
+        <Text style={styleTopo.legendas}>{ this.state.topo.descricao }</Text>
+      </View>
+    </>
+  }
+  
 }
 
 const styleTopo = StyleSheet.create({
@@ -37,3 +60,5 @@ const styleTopo = StyleSheet.create({
 
 
 });
+
+export default Topo;
