@@ -16,7 +16,7 @@ class Topo extends React.Component {
   atualizaTopo() {
     const retorno = carregaTopo();
     this.setState({ topo: retorno});
-    console.log(retorno);
+    //console.log(retorno);
   }
 
   // é executado quando o componente termina de renderizar;
@@ -50,12 +50,12 @@ const styleTopo = StyleSheet.create({
     fontSize: 28,
     lineHeight: 40,
     fontWeight: "bold",
-    color: "black"
+    color: "#464646",
   },
   legendas: {
     fontSize: 16,
     lineHeight: 24,
-    color: "black"
+    color: "#A3A3A3",
   },
 
 
